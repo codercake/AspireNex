@@ -1,18 +1,18 @@
 export const Bio = {
-    name: "Ishitha Chaudhary",
-    roles: [
-      "Software Developer",
-      "Public Speaker",
-      "Programmer",
-    ],
-    description:
-      "I am a proactive individual eagerly seeking opportunities to diversify and strengthen my skill set. With a passion for coding, web development and emerging technologies, I thrive on challenges that set me apart. I enjoy reading novels and browsing informative content!",
-    github: "https://github.com/codercake",
-    resume:
-      "https://docs.google.com/document/d/1-XId7fZ-4XzYPttJbdKr3Vkwr8pKq8gZSXpRpHyrNhQ/edit?usp=sharing",
-    linkedin: "https://www.linkedin.com/in/ishitha-chaudhary",
-    insta: "https://www.instagram.com/ishithaaac_/",
-  };
+  name: "Ishitha Chaudhary",
+  roles: [
+    "Software Developer",
+    "Public Speaker",
+    "Programmer",
+  ],
+  description:
+    "I am a proactive individual eagerly seeking opportunities to diversify and strengthen my skill set. With a passion for coding, web development and emerging technologies, I thrive on challenges that set me apart. I enjoy reading novels and browsing informative content!",
+  github: "https://github.com/codercake",
+  resume:
+    "https://drive.google.com/file/d/1lJlvn_IvuFHyUBHbPKKxqoj3WAHCoZ98/view?usp=sharing",
+  linkedin: "https://www.linkedin.com/in/ishitha-chaudhary",
+  insta: "https://www.instagram.com/ishithaaac_/",
+};
   
   export const skills = [
     {
