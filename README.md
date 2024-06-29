@@ -1,4 +1,4 @@
-**PROJECTS**
+**TABLE CONTENTS OF THE RESPECTIVE PROJECTS**
 
 1. [Personal Portfolio Page](#personal-portfolio-page)
     - [Project Description](#project-description)
