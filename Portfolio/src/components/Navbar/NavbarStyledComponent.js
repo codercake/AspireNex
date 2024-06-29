@@ -56,13 +56,6 @@ export const NavItems = styled.ul`
       display: none;
     }
 `;
-
-const Name = styled.h1`
-  color: skyblue; // or use a specific hex code: #87CEEB;
-  font-size: 2em;
-  margin-bottom: 10px;
-`;
-
 export const NavLink = styled.a`
     color: ${({ theme }) => theme.text_primary};
     font-weight: 500;
