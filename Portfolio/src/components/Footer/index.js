@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import TwitterIcon from '@mui/icons-material/Twitter';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import { Bio } from '../../data/constants';
@@ -100,7 +99,7 @@ function Footer() {
           <SocialMediaIcon href={Bio.insta} target="display"><InstagramIcon /></SocialMediaIcon>
         </SocialMediaIcons>
         <Copyright>
-          &copy; ISHITHA CHAUDHARY. All Rights Reserved.
+          &copy; @ISHITHA CHAUDHARY. All Rights Reserved.
         </Copyright>
 
       </FooterWrapper>

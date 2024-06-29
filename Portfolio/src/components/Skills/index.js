@@ -11,12 +11,6 @@ z-index: 1;
 align-items: center;
 `
 
-const Name = styled.h1`
-  color: skyblue; // or use a specific hex code: #87CEEB;
-  font-size: 2em;
-  margin-bottom: 10px;
-`;
-
 const Wrapper = styled.div`
 position: relative;
 display: flex;
