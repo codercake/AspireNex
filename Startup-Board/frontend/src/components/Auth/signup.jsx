@@ -1,134 +1,150 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
-import axios from 'axios';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { IoEye, IoEyeOff } from "react-icons/io5";
+import styled from "styled-components";
 
-const SignupNow = () => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [error, setError] = useState('');
-  const navigate = useNavigate();
+const SignUpButton = styled.button`
+  width: 100%;
+  text-align: center;
+  padding: 12px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  background-color: #1a365d;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: transform 80ms ease-in;
+  &:hover {
+    transform: scale(1.05);
+  }
+  &:active {
+    transform: scale(0.95);
+  }
+  &:focus {
+    outline: none;
+  }
+`;
 
-  const handleSignup = async (e) => {
+function SignUp() {
+  const [passVis, setPassVis] = useState(false);
+  const [conVis, setConVis] = useState(false);
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+  };
+
+  const handleConfirmPasswordChange = (e) => {
+    setConfirmPassword(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
-      setError('Passwords do not match.');
-      return;
-    }
-
-    try {
-      const response = await axios.post('/api/users/signup', { name, email, password });
-      localStorage.setItem('token', response.data.token);
-      navigate('/dashboard');
-    } catch (err) {
-      setError('Signup failed. Please try again.');
+      setErrorMessage("Passwords do not match");
+    } else {
+      setErrorMessage("");
+      // Handle form submission
     }
   };
 
   return (
-    <SignupContainer>
-      <SignupForm onSubmit={handleSignup}>
-        <Title>Sign Up</Title>
-        {error && <ErrorMessage>{error}</ErrorMessage>}
-        <InputField>
-          <Label>Name</Label>
-          <Input
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
-          />
-        </InputField>
-        <InputField>
-          <Label>Email</Label>
-          <Input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </InputField>
-        <InputField>
-          <Label>Password</Label>
-          <Input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </InputField>
-        <InputField>
-          <Label>Confirm Password</Label>
-          <Input
-            type="password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            required
-          />
-        </InputField>
-        <SignupButton type="submit">Sign Up</SignupButton>
-      </SignupForm>
-    </SignupContainer>
+    <section className="bg-gray-900 py-8 min-h-screen signup">
+      <div className="flex flex-col items-center max-w-[36rem] justify-center px-8 py-10 mx-auto mt-10 lg:py-12">
+        <div className="w-full bg-white rounded-lg shadow-lg">
+          <div className="p-8 space-y-6 md:space-y-8 sm:p-10">
+            <h1 className="text-2xl font-bold leading-tight tracking-tight text-gray-900 md:text-3xl">
+              BEGIN YOUR JOURNEY!
+            </h1>
+            <form className="space-y-6 md:space-y-8" onSubmit={handleSubmit}>
+              <div>
+                <label
+                  htmlFor="email"
+                  className="block mb-2 text-sm font-medium text-gray-900"
+                >
+                  Your email
+                </label>
+                <input
+                  type="email"
+                  name="email"
+                  id="email"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-3"
+                  placeholder="name@company.com"
+                  required=""
+                />
+              </div>
+              <div className="relative">
+                <label
+                  htmlFor="password"
+                  className="block mb-2 text-sm font-medium text-gray-900"
+                >
+                  Password
+                </label>
+                <input
+                  type={passVis ? "text" : "password"}
+                  name="password"
+                  id="password"
+                  value={password}
+                  onChange={handlePasswordChange}
+                  placeholder="••••••••"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-3"
+                  required=""
+                />
+                <span
+                  onClick={() => setPassVis(!passVis)}
+                  className="absolute right-4 top-10 text-gray-400 hover:cursor-pointer"
+                >
+                  {passVis ? <IoEyeOff className="h-5 w-5" /> : <IoEye className="h-5 w-5" />}
+                </span>
+              </div>
+              <div className="relative">
+                <label
+                  htmlFor="confirm-password"
+                  className="block mb-2 text-sm font-medium text-gray-900"
+                >
+                  Confirm password
+                </label>
+                <input
+                  type={conVis ? "text" : "password"}
+                  name="confirm-password"
+                  id="confirm-password"
+                  value={confirmPassword}
+                  onChange={handleConfirmPasswordChange}
+                  placeholder="••••••••"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-3"
+                  required=""
+                />
+                <span
+                  onClick={() => setConVis(!conVis)}
+                  className="absolute right-4 top-10 text-gray-400 hover:cursor-pointer"
+                >
+                  {conVis ? <IoEyeOff className="h-5 w-5" /> : <IoEye className="h-5 w-5" />}
+                </span>
+              </div>
+              {errorMessage && (
+                <p className="text-red-600 text-sm">{errorMessage}</p>
+              )}
+              <div className="flex items-start">
+                <SignUpButton type="submit">REGISTER NOW</SignUpButton>
+              </div>
+              <p className="text-sm font-light text-gray-500 dark:text-gray-500">
+                Already have an account?{" "}
+                <Link
+                  to="/login"
+                  className="font-medium text-primary-600 hover:underline dark:text-primary-500"
+                >
+                  Login here
+                </Link>
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
   );
-};
+}
 
-const SignupContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background: #f4f4f4;
-`;
-
-const SignupForm = styled.form`
-  background: #fff;
-  padding: 2rem;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  width: 300px;
-`;
-
-const Title = styled.h2`
-  text-align: center;
-  margin-bottom: 1rem;
-`;
-
-const ErrorMessage = styled.p`
-  color: red;
-  text-align: center;
-  margin-bottom: 1rem;
-`;
-
-const InputField = styled.div`
-  margin-bottom: 1rem;
-`;
-
-const Label = styled.label`
-  display: block;
-  margin-bottom: 0.5rem;
-`;
-
-const Input = styled.input`
-  width: 100%;
-  padding: 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-`;
-
-const SignupButton = styled.button`
-  width: 100%;
-  padding: 0.5rem;
-  background: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 1rem;
-  &:hover {
-    background: #0056b3;
-  }
-`;
-
-export default SignupNow;
+export default SignUp;

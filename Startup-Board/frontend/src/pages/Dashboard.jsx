@@ -4,7 +4,7 @@ import DashboardBar from '../components/Dashboard/dashboard';
 const Dashboard = () => {
   return (
     <div>
-      <h1>Dashboard</h1>
+      <DashboardBar />
     </div>
   );
 };
